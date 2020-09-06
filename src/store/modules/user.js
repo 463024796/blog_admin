@@ -53,22 +53,23 @@ const actions = {
     const { email, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ email: email.trim(), password: password }).then(response => {
-        const { code, data, msg } = response
-        if (code === 1) {
-          commit('SET_TOKEN', data.token)
-          commit('SET_NAME', data.user.name)
-          commit('SET_EMAIL', data.user.email)
-          commit('SET_ID', data.user.id)
-          commit('SET_IS_ADMIN', data.user.is_admin)
-          commit('SET_LAST_LOGIN', data.user.last_login)
-          commit('SET_LAST_IP_ADDRESS', data.user.last_ip_address)
-          commit('SET_VERIFY_AT', data.user.verify_at)
-          setToken(data.token)
+        const { Code, Data, Msg } = response
+        if (Code === 1) {
+          // commit('SET_TOKEN', data.token) 
+          commit('SET_NAME', Data.user.name)
+          commit('SET_EMAIL', Data.user.email)
+          commit('SET_ID', Data.user.id)
+          commit('SET_IS_ADMIN', Data.user.is_admin)
+          commit('SET_LAST_LOGIN', Data.user.last_login)
+          commit('SET_LAST_IP_ADDRESS', Data.user.last_ip_address)
+          commit('SET_VERIFY_AT', Data.user.verify_at)
+          // setToken(data.token)
         } else {
           throw new Error(msg)
         }
         resolve()
       }).catch(error => {
+        console.log(error)
         reject(error)
       })
     })
@@ -77,19 +78,19 @@ const actions = {
     const { email, password } = userInfo
     return new Promise((resolve, reject) => {
       userLogin({ email: email.trim(), password: password }).then(response => {
-        const { code, data, msg } = response
-        if (code === 1) {
-          commit('SET_TOKEN', data.token)
-          commit('SET_NAME', data.user.name)
-          commit('SET_EMAIL', data.user.email)
-          commit('SET_ID', data.user.id)
-          commit('SET_IS_ADMIN', data.user.is_admin)
-          commit('SET_LAST_LOGIN', data.user.last_login)
-          commit('SET_LAST_IP_ADDRESS', data.user.last_ip_address)
-          commit('SET_VERIFY_AT', data.user.verify_at)
-          setToken(data.token)
+        const { Code, Data, Msg } = response
+        if (Code === 1) {
+          // commit('SET_TOKEN', Data.token)
+          commit('SET_NAME', Data.user.name)
+          commit('SET_EMAIL', Data.user.email)
+          commit('SET_ID', Data.user.id)
+          commit('SET_IS_ADMIN', Data.user.is_admin)
+          commit('SET_LAST_LOGIN', Data.user.last_login)
+          commit('SET_LAST_IP_ADDRESS', Data.user.last_ip_address)
+          commit('SET_VERIFY_AT', Data.user.verify_at)
+          // setToken(Data.token)
         } else {
-          throw new Error(msg)
+          throw new Error(Msg)
         }
         resolve()
       }).catch(error => {
